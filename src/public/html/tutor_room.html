@@ -1,3 +1,4 @@
+<!--@author Paul Heinemeyer-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +10,14 @@
 <!-- File-Bar -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="fileBar">
     <ul class="navbar-nav" id="fileSaver">
-            
     </ul>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a id="download" class="nav-link" href="#">Save File</a>
+                    <a id="download" class="nav-link" href="#" style="color:green; font-weight: bold">Save File</a>
+                </li>
+                <li class="nav-item">
+                  <a id="closeActiveFile" class="nav-link" href="#" style="color:crimson; font-weight: bold">Close File</a>
                 </li>
             </ul>
     </div>
@@ -28,9 +31,12 @@
     <div class="col-12 px-0" style="height: 100%;">
             <nav class="navbar navbar-expand-sm bg-light navbar-light" id="tutorNav">
                     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                            <ul class="navbar-nav">
+                                <a id="call" class="nav-link" href="#" style="color: green;">Tutor anrufen</a>
+                            </ul>
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a id="download" class="nav-link" href="#">Tutor anrufen</a>
+                                    <a id="leaveRoom" class="nav-link" href="startseite.html" style="color: red;">Raum verlassen</a>
                                 </li>
                             </ul>
                     </div>

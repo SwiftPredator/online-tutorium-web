@@ -48,13 +48,15 @@
         aTag.innerHTML = name;
         aTag.classList.add("nav-link");
         const para = filesContent.length - 1; 
-        aTag.onclick = function(){ 
-            changeFile(para); 
+        aTag.onclick = function(event){ 
+            var li = event.target.closest('li');
+            var nodes = Array.from( li.closest('ul').children );
+            var index = nodes.indexOf( li );
+            changeFile(index); 
         };
         node.appendChild(aTag); 
         document.getElementById("fileSaver").appendChild(node); 
     }
-
     function changeFile(index) {
         //Save changes
         const currIndex =  $('.navbar-nav .active').index();
@@ -79,5 +81,17 @@
         $('#message').val("");
         $(".chat-box").scrollTop($('.chat-box')[0].scrollHeight - $('.chat-box')[0].clientHeight);
     });
+
+    //Listener for close file 
+    document.getElementById("closeActiveFile").addEventListener("click", ()=>{
+        const currIndex =  $('.navbar-nav .active').index();
+        if(currIndex == -1) {return;}
+        $('#fileSaver li').eq(currIndex).remove();
+        filesContent.splice(currIndex, 1);
+        if(currIndex == 0) {return;}
+        $('#fileSaver li').eq(0).addClass('active');
+        editor.setValue(filesContent[0],-1);
+        
+      });
     
 
