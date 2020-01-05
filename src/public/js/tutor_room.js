@@ -88,7 +88,8 @@
         if(currIndex == -1) {return;}
         $('#fileSaver li').eq(currIndex).remove();
         filesContent.splice(currIndex, 1);
-        if(currIndex == 0) {return;}
+        editor.setValue("", -1);
+        if(filesContent.length == 0) {return;}
         $('#fileSaver li').eq(0).addClass('active');
         editor.setValue(filesContent[0],-1);
         
