@@ -45,7 +45,7 @@ a:link {
 
 /* visited link */
 a:visited {
-  color: black;
+  color: red;
 }
 
 /* mouse over link */
