@@ -77,22 +77,27 @@
     //Listen for send test messages
     document.getElementById("sendMessage").addEventListener("submit", function(e){
         e.preventDefault();
-        $( ".chat-box" ).append('<div class="media w-50 ml-auto mb-3"> <div class="media-body"> <div class="bg-primary rounded py-2 px-3 mb-2"><p class="text-small mb-0 text-white">'+$('#message').val()+'</p></div><p class="small text-muted">12:00 PM | Dez 20</p></div></div>' );
+        $( ".chat-box" ).append('<div class="media w-50 ml-auto mb-3"> <div class="media-body"> <div class="bg-primary rounded py-2 px-3 mb-2"><p class="text-small mb-0 text-white">'+$('#message').val()+'</p></div><p class="small text-muted">'+ new Date().toLocaleString()+'</p></div></div>' );
         $('#message').val("");
         $(".chat-box").scrollTop($('.chat-box')[0].scrollHeight - $('.chat-box')[0].clientHeight);
     });
 
     //Listener for close file 
     document.getElementById("closeActiveFile").addEventListener("click", ()=>{
-        const currIndex =  $('.navbar-nav .active').index();
-        if(currIndex == -1) {return;}
-        $('#fileSaver li').eq(currIndex).remove();
-        filesContent.splice(currIndex, 1);
-        editor.setValue("", -1);
-        if(filesContent.length == 0) {return;}
-        $('#fileSaver li').eq(0).addClass('active');
-        editor.setValue(filesContent[0],-1);
+        if(confirm("Möchten Sie den File wirklich schließen?")) {
+            const currIndex =  $('.navbar-nav .active').index();
+            if(currIndex == -1) {return;}
+            $('#fileSaver li').eq(currIndex).remove();
+            filesContent.splice(currIndex, 1);
+            editor.setValue("", -1);
+            if(filesContent.length == 0) {return;}
+            $('#fileSaver li').eq(0).addClass('active');
+            editor.setValue(filesContent[0],-1);
+        }
         
       });
+
+      //Set opening Message Date dynamic
+      document.getElementById("opening_message").innerHTML = new Date().toLocaleString();
     
 
