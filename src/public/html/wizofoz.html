@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WoZ</title>
+<script type="text/javascript" src="../js/wizofoz.js"></script>
+</head>
+<body>
+
+<h1>Input Interface</h1>
+
+<form>
+    <hr />
+    <input type="button" value="Create DB" id="create" onclick="createDB();">
+    <hr />
+    <input type="button" value="Initialize" id="initialize" onclick="initDB();">
+    <hr />
+    Queue position: <input id="pos" type="number" value="5" oninput="set('queuePos');" />
+     <hr/>
+    <fieldset>
+        <legend>Chat</legend>
+        <!-- <textarea id="chat-box" style="width: 430px; height: 150px;" disabled></textarea> <br/> -->
+        <input id="msg" type="text" placeholder="Message" style="width: 250px;">
+        <input type="button" value="Send" onclick="set('chatMessage');">
+    </fieldset>
+</form>
+
+</body>
+</html>
