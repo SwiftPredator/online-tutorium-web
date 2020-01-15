@@ -69,11 +69,16 @@ var handlers = {
 
 var accdec = false;
 function updatePos(response) {
+    console.log(window.location.href.includes("startseite"));
     if(response.value == 0 && !accdec && window.location.href.includes("startseite")) {
         accdec = true;
         if(confirm("Du bist an der Reihe möchstest du mit dem Tutor reden?")) {
             window.location.href = "tutor_room.html";
-        } 
+        }  else {
+            document.getElementById("queueDesc").innerHTML = "Personen in der Schlange";
+            document.getElementById("enqueue_student").innerHTML =  "Eintragen";
+            document.getElementById("enqueue_student").style.color ="green";
+        }
     }
     document.getElementById("queuePos").innerHTML =  response.value;   
 }
