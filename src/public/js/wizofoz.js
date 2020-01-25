@@ -108,6 +108,7 @@ var dburl = "http://127.0.0.1:5984/" + dbname + "/";
 var handlers = {
     "queuePos" : setQueuePos,
     "chatMessage" : setChatMessage,
+    "setQueue": setQueue
 };
 
 function setQueuePos(response) {
@@ -120,8 +121,13 @@ function setChatMessage(response) {
     put(response, {"msg" : document.getElementById("msg").value});
 }
 
+function setQueue(response) {
+    put(response, {"val" : document.getElementById("aQueue").value});
+}
+
 
 function initDB() {
     set("queuePos");
     set("chatMessage");
+    set("setQueue");
 }

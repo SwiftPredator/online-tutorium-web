@@ -6,21 +6,18 @@
 </head>
 <body>
 
-<h1>Input Interface</h1>
-
 <form>
-    <hr />
+   
     <input type="button" value="Create DB" id="create" onclick="createDB();">
-    <hr />
     <input type="button" value="Initialize" id="initialize" onclick="initDB();">
     <hr />
+    Activate Queue: <input type="number" value="0" id="aQueue" oninput="set('setQueue');">
     Queue position: <input id="pos" type="number" value="5" oninput="set('queuePos');" />
-     <hr/>
-    <fieldset>
-        <legend>Chat</legend>
-        <input id="msg" type="text" placeholder="Message" style="width: 400px;">
-        <input type="button" value="Send" onclick="set('chatMessage');">
-    </fieldset>
+    <hr/>
+    <a>Chat: </a>
+    <input id="msg" type="text" placeholder="Message" style="width: 400px;">
+    <input type="button" value="Send" onclick="set('chatMessage');">
+
 </form>
 
 </body>

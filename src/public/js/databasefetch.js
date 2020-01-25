@@ -65,22 +65,45 @@ var dburl = "http://127.0.0.1:5984/" + dbname + "/";
 var handlers = {
     "queuePos" : updatePos,
     "chatMessage" : updateMsg,
+    "setQueue" : setQueue
 };
-
+function setQueue(response) {
+    console.log("IN");
+    if(status == 0) {
+        if(response.val == 0) {
+            document.getElementById("enqueue_student").disabled = true;
+            document.getElementById("enqueue_student").innerHTML =  "Queue zurzeit geschlossen";
+            document.getElementById("enqueue_student").classList.add('btn-danger');
+            document.getElementById("enqueue_student").classList.remove('btn-success');
+        } else {
+            document.getElementById("enqueue_student").disabled = false;
+            document.getElementById("enqueue_student").innerHTML =  "Eintragen";
+            document.getElementById("enqueue_student").classList.add('btn-success');
+            document.getElementById("enqueue_student").classList.remove('btn-danger');
+        }
+    }
+}
 var accdec = false;
 function updatePos(response) {
     console.log(window.location.href.includes("startseite"));
-    if(response.value == 0 && !accdec && window.location.href.includes("startseite")) {
-        accdec = true;
-        if(confirm("Du bist an der Reihe möchstest du mit dem Tutor reden?")) {
+    if(response.value == 0 && window.location.href.includes("startseite")) {
+        console.log(status, accdec);
+        if(status == 1 && confirm("Du bist an der Reihe möchstest du mit dem Tutor reden?")) {
             window.location.href = "tutor_room.html";
         }  else {
             document.getElementById("queueDesc").innerHTML = "Personen in der Schlange";
             document.getElementById("enqueue_student").innerHTML =  "Eintragen";
-            document.getElementById("enqueue_student").style.color ="green";
+            document.getElementById("enqueue_student").classList.add('btn-success');
+            document.getElementById("enqueue_student").classList.remove('btn-danger');
+            status = 0;
         }
+       
     }
-    document.getElementById("queuePos").innerHTML =  response.value;   
+    if(status == 0 && response.value > 0) {
+        document.getElementById("queuePos").innerHTML =  response.value - 1;   
+    } else {
+        document.getElementById("queuePos").innerHTML =  response.value;
+    }
 }
 
 var prevMSG = "";
